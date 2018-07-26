@@ -505,9 +505,10 @@ void game_loop()
 	draw_page(!current_draw_buffer_page);
 #endif
 	fill_screen(0);
+	drawScreen(visited);
 	draw_message_box("FOFONSO S WUMPUS HUNT", "");
 	print_score(score);
-	drawScreen(visited);
+
 	display_contextual_messages();
 
 #ifdef MSDOS

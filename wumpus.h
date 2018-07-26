@@ -23,6 +23,11 @@
 #define boardSizeY 25
 #endif
 
+#ifdef MEGADRIVE
+#define boardSizeX 29
+#define boardSizeY 19
+#endif
+
 //----------------------------------------------------
 //These are public functions implemented at wumpus.c:
 int wumpus_main();
