@@ -140,7 +140,7 @@ void wait_for_user_input()
 int main()
 {
 	init_system();
-	wumpus_main();
+	while (42) wumpus_main();
 	return 0;
 }
 

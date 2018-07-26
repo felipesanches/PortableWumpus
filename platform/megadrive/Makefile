@@ -15,7 +15,7 @@ ASFLAGS = -m68000 --register-prefix-optional
 LIBS = -L$(GENDEV)/m68k-elf/lib -L$(GENDEV)/m68k-elf/m68k-elf/lib -lc -lgcc -lnosys
 LINKFLAGS = -T $(GENDEV)/ldscripts/md.ld -Wl,-Map=output.map -nostdlib
 
-OBJS = crt0.o main.o hw_md.o font.o megadrive.o ../../wumpus.o
+OBJS = crt0.o hw_md.o font.o megadrive.o ../../wumpus.o
 
 MAME = ~/mame/megadrive64
 ROMPATH = ~/nonfree/mame
