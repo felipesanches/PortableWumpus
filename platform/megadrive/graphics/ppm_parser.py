@@ -118,8 +118,7 @@ for i in range(sizeX*sizeY):
 		if(currentIndex > endIndex):
 			print("TO MANY COLORS TO FIT THAT ALLOCATED PALLETTE SPACE")
 			exit()
-	gfx.append(color)
-	#foutpgm.write(str(indexes[pallette.index(color)])+"\n")
+	gfx.append(indexes[pallette.index(color)])
 
 c = len(pallette)
 while c < 16:
@@ -128,5 +127,33 @@ while c < 16:
 
 fout.write(
 '''const u16 palette[16] =
-{\n\t''' + ",\n\t".join(map("0x{:04X}".format, pallette)) + "\n};")
+{\n\t''' + ",\n\t".join(map("0x{:04X}".format, pallette)) + "\n};\n\n")
 
+tiles = [
+  ["player",       0, 0],
+  ["arrow",        1, 0],
+  ["floor_closed", 2, 0],
+
+  ["border_top_left",  0, 1],
+  ["border_top",       1, 1],
+  ["border_top_right", 2, 1],
+
+  ["border_left",  0, 2],
+  ["floor_open",   1, 2],
+  ["border_right", 2, 2],
+
+  ["border_bottom_left",  0, 3],
+  ["border_bottom",       1, 3],
+  ["border_bottom_right", 2, 3]
+]
+
+for tile_name, i, j in tiles:
+	tile_data = []
+	for y in range(8):
+		value = 0
+		for x in range(8):
+			value = (value << 4) | gfx[24*(j*8 + y) + (i*8 + x)]
+		tile_data.append(value)
+
+	fout.write("const u16 tile_" + tile_name + "[8] =\n{\n\t" + \
+	           ",\n\t".join(map("0x{:08X}".format, tile_data)) + "\n};\n\n")
